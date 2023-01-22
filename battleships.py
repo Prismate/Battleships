@@ -1,6 +1,5 @@
 import time
 import os
-# import replit
 
 SHIP_TYPE = [4, 3, 2, 1]
 PLAYER = ['PLAYER_1', 'PLAYER_2']
@@ -19,6 +18,7 @@ player_1 = [
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
     ]
+
 player_2 = [
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
@@ -26,6 +26,7 @@ player_2 = [
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
     ]
+
 player_1_guess = [
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
@@ -33,6 +34,7 @@ player_1_guess = [
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."]
     ]
+
 player_2_guess = [
         [".", ".", ".", ".", "."],
         [".", ".", ".", ".", "."],
@@ -50,6 +52,7 @@ class bcolors:
     OO = '\033[95m'
     END = "\033[0m"
 
+    
 def get_empty_board():
     board = [
         [".", ".", ".", ".", "."],
@@ -60,6 +63,7 @@ def get_empty_board():
     ]
     return board
 
+
 def display_board(board):
     print("  1 2 3 4 5")
     print(f"A {board[0][0]} {board[0][1]} {board[0][2]} {board[0][3]} {board[0][4]}")
@@ -68,6 +72,7 @@ def display_board(board):
     print(f"D {board[3][0]} {board[3][1]} {board[3][2]} {board[3][3]} {board[3][4]}")
     print(f"E {board[4][0]} {board[4][1]} {board[4][2]} {board[4][3]} {board[4][4]}")
 
+    
 def user_input(place_ship):
     if place_ship == True:
         while True:
@@ -125,6 +130,7 @@ def user_input(place_ship):
 
         return row, column
 
+    
 def place_ships(board):
     for current_player in PLAYER:
         if current_player == 'PLAYER_1':
@@ -174,6 +180,7 @@ def place_ships(board):
                                     display_board(player_2)
                                     break
 
+                                    
 def valid_placement(ship_len, row, column, position):
     if position == "H":
         if column + ship_len <= 5:
@@ -183,6 +190,7 @@ def valid_placement(ship_len, row, column, position):
             return True
     print("Your ship is too long!")
     return False
+
 
 def ship_overwrites(board, row, column, position, ship_len):
     if position == "H":
@@ -196,6 +204,7 @@ def ship_overwrites(board, row, column, position, ship_len):
                 print("This position is already taken! Enter a valid coordinates!")
                 return False
     return True
+
 
 def available_space(board, row, column, position, ship_len):
     space = []
@@ -243,8 +252,8 @@ def available_space(board, row, column, position, ship_len):
     else:
         return True
 
+    
 def countdown(t):
-
     while t:
         mins, secs = divmod(t, 60)
         timer = '{:02d}:{:02d}'.format(mins, secs)
@@ -254,6 +263,7 @@ def countdown(t):
 
     print('Fire in the hole!!')
 
+    
 def count_accurate_hit(board):
     count = 0
     for row in board:
@@ -261,6 +271,7 @@ def count_accurate_hit(board):
             if column =="H":
                 count += 1
     return count
+
 
 def turn(board):
     if board == player_1_guess:
